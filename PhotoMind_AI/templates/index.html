@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhotoMind AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h1>PhotoMind AI</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="photo" required>
+
+            <button type="submit">Upload</button>
+
+        </form>
+
+    </div>
+
+    <div class="container">
+
+        {% for photo in photos %}
+
+        <div class="card">
+
+            <img src="{{ url_for('static', filename='photos/' + photo[1]) }}">
+
+            <div class="card-content">
+
+                <h3>{{ photo[1] }}</h3>
+
+                <p>
+                    <strong>Caption:</strong><br>
+                    {{ photo[2] }}
+                </p>
+
+                <p>
+                    <strong>Objects:</strong><br>
+                    {{ photo[3] }}
+                </p>
+
+                <p>
+                    <strong>Faces Detected:</strong>
+                    {{ photo[4] }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
